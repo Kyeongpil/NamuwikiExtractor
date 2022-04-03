@@ -1,4 +1,4 @@
-ijson
-kss<2
+ujson
+kss
 namu-wiki-extractor
 tqdm
