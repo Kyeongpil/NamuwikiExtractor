@@ -1,41 +1,31 @@
 # Namuwiki Extractor
-[파이썬으로 나무위키 JSON 덤프 데이터 파싱하기](https://heegyukim.medium.com/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9C%BC%EB%A1%9C-%EB%82%98%EB%AC%B4%EC%9C%84%ED%82%A4-json-%EB%8D%A4%ED%94%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%8C%8C%EC%8B%B1%ED%95%98%EA%B8%B0-8f41cee1e155) 이용하여 만든 Namuwiki Extractor  
+- [기존 NamuwikiExtractor](https://github.com/nawnoes/NamuwikiExtractor)를 클론하였습니다.
+- 기존 레포에서 사용하는 kss<2의 경우 결과를 살펴봤을 때, 문장이 잘 분절이 안되는 경우들을 확인하였습니다.
+- kss 3.x가 sentence segmentation 결과가 더 좋으나 형태소 분석기를 사용함에 따라 속도가 더 느린 문제가 있어서 kss 3.x에 맞게 수정 및 multiprocessing이 가능하게 refactoring을 진행하였습니다
 
-### 개선사항
-- 명령형으로 사용가능하게 변경
-- 색상코드 제외 정규식 추가
-- kss를 이용한 문장 나누기 추가
 
-### 사용법
-##### 0. 패키지 설치
-```text
-ijson
-kss<2
-namu-wiki-extractor
-```
-##### 1. 나무위기 덤프 다운로드
+## 사용법
+#### 0. 나무위기 덤프 다운로드
 [나무위키 덤프 다운로드 페이지](https://namu.wiki/w/%EB%82%98%EB%AC%B4%EC%9C%84%ED%82%A4:%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4%20%EB%8D%A4%ED%94%84)에서 나무위키 덤프 다운로드 
-![](https://images.velog.io/images/nawnoes/post/f7211354-e0b3-40a8-af68-087df9a69473/image.png)
-##### 2. Namuwiki Extrator 다운로드
-![](https://images.velog.io/images/nawnoes/post/1939c2cf-6ca9-4ae5-abf9-17114d786166/image.png)
-[nawnoes/NamuwikiExtractor](https://github.com/nawnoes/NamuwikiExtractor) 에서 `NamuwikiExtractor.py` 다운로드.
-##### 3. 명령어 실행
-`NamuwikiExtractor.py` 경로에서 아래 명령어 실행. 
-```sh
-python3 NamuwikiExtractor.py --dump_path "[나무위키 덤프 경로]" --output_file "[출력 파일경로]"
+
+
+### 1. Mecab 설치
+- [Mecab 홈페이지](https://bitbucket.org/eunjeon/mecab-ko) 참조
+- 
+
+### 2. 패키지 설치
+```text
+ujson
+kss
+namu-wiki-extractor
+python-mecab-ko
 ```
 
-###### 사용예  
+- 해당 레포를 다운로드 후 pip install -r requirements.txt로 필요 라이브러리를 설치합니다.
+
+
+#### 3. 명령어 실행
+`NamuwikiExtractor.py` 경로에서 아래 명령어 실행. 40코어 기준 8시간 소요
 ```sh
-python3 NamuwikiExtractor.py --dump_path "/Volumes/My Passport for Mac/00_nlp/나무위키/docData200302.json" --output_file "./namuwiki.txt"
+python3 NamuwikiExtractor.py --dump-path "[나무위키 덤프 경로]" --output-dir "[저장 폴더 경로]" --num-workers "[워커 개수]"
 ```
-
-
-##### 4. 파일 생성
-위에 인자로 사용한 `출력 파일경로`에 아래와 같이 나무위키 텍스트 파일 생성
-![](https://images.velog.io/images/nawnoes/post/37b3bbf2-b5cd-41c7-94ba-212b6085608b/image.png)
-
-
-
-## Reference
-[파이썬으로 나무위키 JSON 덤프 데이터 파싱하기](https://heegyukim.medium.com/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9C%BC%EB%A1%9C-%EB%82%98%EB%AC%B4%EC%9C%84%ED%82%A4-json-%EB%8D%A4%ED%94%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%8C%8C%EC%8B%B1%ED%95%98%EA%B8%B0-8f41cee1e155)
