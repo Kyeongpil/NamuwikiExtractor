@@ -2,3 +2,4 @@ ujson
 kss
 namu-wiki-extractor
 tqdm
+python-mecab-ko
