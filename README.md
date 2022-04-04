@@ -25,7 +25,7 @@ python-mecab-ko
 
 
 #### 3. 명령어 실행
-`NamuwikiExtractor.py` 경로에서 아래 명령어 실행. 40코어 기준 8시간 소요
+`NamuwikiExtractor.py` 경로에서 아래 명령어 실행. 40코어 기준 6시간 정도 소요
 ```sh
 python3 NamuwikiExtractor.py --dump-path "[나무위키 덤프 경로]" --output-dir "[저장 폴더 경로]" --num-workers "[워커 개수]"
 ```
