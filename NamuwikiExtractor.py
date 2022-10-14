@@ -40,7 +40,7 @@ def process(proc_id: int, docs: List[Dict[str, Any]], output_dir: str):
     file = open(os.path.join(output_dir, f"namuwiki_{proc_id:02d}.txt"), "w", encoding="utf-8")
     is_first = True
 
-    for doc in tqdm(docs, disable=(proc_id != 0)):
+    for doc in tqdm(docs, disable=(proc_id != 0), mininterval=1):
         title = clean_text(doc["title"])
         body = clean_text(doc["text"])
 
